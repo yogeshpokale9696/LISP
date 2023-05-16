@@ -1,0 +1,87 @@
+Q.1
+1.
+	(defun squaresum(x y) (+ (* x x) (* y y)))
+	(squaresum 2 4)
+
+2.
+	(defun diffofsq(x y) (if (> x y) (-((expt y 2))expt x 2)  (- (expt y 2) (expt x 2))))
+	(diffofsq 4 2)
+
+3.
+	(setq l '(a b c d f r s d s))
+	(defun lastele(l) (nthcdr (-(length l) 1)  l))
+	(lastele l)
+4.
+	(setq l '(a b c d f r s d s))
+	(defun butls(l) (setq x  (remove (car (nthcdr (-(length l) 1)  l))l )) x)
+	(butls l)
+
+	// OR
+	
+	(defun butls(l) (reverse (rest (reverse l))))
+
+
+5.
+	(defun areaofc(r) (* 3.14 (* r r)))
+
+6.
+	(defun insert-after (l i e) (push e (cdr (nthcdr i l))) l)   //                                                                                                                                                                                                                                                                                                 
+	(insert-after '(a c d) 0 'b)
+
+	((push 'b (cdr (nthcdr 0 '(a c d)))) '(a c d))
+
+7.
+	// (dotimes (i 5) (print i))
+
+	// (defun seqq(x y) ( (dotimes (x y) (print i))) )
+	// OR
+
+	// (defun seqq(x y)(loop :for x : below y :collect x))
+
+	// OR
+
+	// (loop for i from 1 to 5 do (print i))
+
+	(defun seqq(x y)(loop for i from x to y do (print i)))
+
+
+	(write (make-sequence '(vector integer) 6  :initial-element 2))
+
+8.
+	(defun revlst(l) (append (rest l) (list (first l))))
+
+	(revlst lst)
+
+9.
+	(defun ave(a b c d)(float (/ (+ a b c d) 4)))
+	
+10.
+	// (A B C) --> (C A B)
+
+	(setq ls '(a b c))
+
+	(defun roatate-r(l) (append ( rest(rest l)) (append (list (first l)) (list (first(rest l ))))))
+	(roatate-r ls)
+
+11.
+
+	// (A B C) --> (B C A)
+	(defun roatate-l(l) (append (rest l) (list (first l))))
+
+12.
+	 (setq ls '(a b a))
+
+	(defun palindrome-p (l) (equal l (reverse l)))
+
+	(palindrome-p ls)
+
+13.
+	(defun add(a b) (append (list a) b))
+	
+	 (add a b)
+
+(setq a '(a b c) b '(d e f))
+
+
+
+

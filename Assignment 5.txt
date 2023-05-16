@@ -1,0 +1,260 @@
+Assignment 5: Assignment to study Predicates and conditional
+(Part II)
+
+1. Write a LISP program to add 2 list
+-->
+	(cons '(a b c) '(d e f))
+
+
+2.Write a LISP function to check Armstrong no
+-->
+	(defun arm(n) (setf num n sum 0)(loop while(/= n 0) do (setf digit(mod n 10))(setf sum(+ sum(*(* digit digit)digit))) (setf n(floor n 10))) (if(= sum num) (print "armstrong number....!") (print "not armstrong number...!")))
+
+
+3. Write LISP program to insert an element at a given position into a list.
+-->
+	(defun insert-after (lst index newlt) (push newlt (cdr (nthcdr index lst))) lst)   //                                                                                                                                                                                                                                                                                                 
+	(insert-after '(a c d) 0 'b)
+
+
+
+4. Write a LISP program to create a list containing all integers within a given range.
+-->
+	(defun seqq(x y)(loop for i from x to y do (print i)))
+
+5. Write lisp function to rotate given list in left direction by N elements.
+-->
+	//(defun roatate-l(l) (append (rest l) (list (first l))))
+
+//(defun rott (l n) (loop do(setq l (append (rest l) (list (first l)))) while (> n 0))
+
+		OR
+
+(defun rotate-l (n l) (append (nthcdr n l) (butlast l (- (length l) n))))
+
+6. Write lisp function which finds the factorial of a given number.
+-->
+
+Normal Recursion:-	
+	(defun fact(n) (if(= n 1) 1(* n (fact(- n 1)))))
+
+Tail Recursion:-
+	(defun fact(num res) (if(= num 1) res (fact (- num 1) (* num res))))
+
+	
+
+7. Write lisp function to remove all occurrences of an atom from a  list.(duplicate)
+-->
+	(defun dupli(l)
+(cond ((null l) l)
+((member (car l) (cdr l))
+(dupli (cdr l)))
+( t (cons (car l) (dupli (cdr l))))))
+
+(dupli  '(a b c a n k))
+	
+8. Write lisp function to remove all occurrences of an atom from a list.
+-->
+	
+(defun remove-all(a l)(cond ((null l) nil)((equal a (car l))(remove-all a (cdr l)))( t (cons (car l)(remove-all a (cdr l))))))
+ (remove-all 'a '(a b c a n k))
+
+9. Write LISP function for finding GCD of 2 numbers.
+-->
+	(defun gcd2num(a b) (if (= b 0) a (gcd b (mod a b))))
+	 (gcd2num 24 18)
+10. Write lisp function which takes one argument as a list and return last element of the list.(do not use last predicate)
+-->
+	(defun lastele (l) (first(reverse l)))
+
+ (lastele '(Y o g e s h))
+
+11. Write lisp function for finding intersection of two lists. 
+-->
+	(defun intersection-list (l1 l2)(remove-if-not #'(lambda (x) (member x l2)) l1))
+
+(intersection-list '(a b c) '(p c r))
+
+12. Write lisp function to rotate given list in right direction by N elements.
+-->
+(defun rotateright (n l)
+(rotateleft (- (length l) n) l))
+
+(rotateright 4 a)
+
+13. Write lisp function that count the top level element in the given list.
+-->
+	(defun count-toplevel(l)
+(let ((count 0))
+(dolist (elem l)
+(when (not (listp elem))
+(incf count)))
+count))
+
+
+(count-toplevel '(1 2 3 4 5 9 8))
+
+(count-toplevel '(1 (2 3) (4 5)))
+
+14. Write lisp function which find maximum element from given list.
+-->
+(defun max-ele (l)
+(if (null l) nil
+(let ((max (car l)))
+(dolist (x (cdr l))
+(when (> x max)
+(setq max x)))
+max)))
+
+(max-ele '(2 4 6 5 3 9))
+
+15. Write lisp program to print even nos. from a given list.
+-->
+(defun print-even (l) (dolist (n l) (when (evenp n) (print n))))
+(print-even '(1 2 3 4 5 6))
+
+OR
+
+(defun even-list(l)
+(remove-if-not #'evenp l))
+
+(even-list '(1 2 3 4 5 6 7 8 9))
+
+
+
+
+16. Write Lisp program to input marks of five subjects Physics, chemistry, biology, mathematics, and computer. Calculate percentage and grade accordingly to given conditions; If percentage>=90%; Grade A
+
+If percentage>=80%; Grade B
+If percentage>=70%; Grade C
+If percentage>=60%; Grade D If percentage>=40%; Grade E
+If percentage<40%; Grade F
+-->
+(let* ((total-marks (+ phy chen bio math comp))
+(percentage (/ (* total-marks 100) (* 5 100.0))))
+(cond ((> percentage 90) "Grade A")
+((> percentage 80) "Grade B")
+((> percentage 70) "Grade C")
+((> percentage 60) "Grade D")
+((> percentage 40) "Grade E")
+(t "Grade F"))))
+
+(calculate-grade 78 65 91 85 86)
+
+   OR
+
+(defun cal(phy chen bio math comp)(setq per (/ (+ phy chen bio math comp) 5)))
+
+
+(cond ((> per 90) "Grade A")
+((> per 80) "Grade B")
+((> per 70) "Grade C")
+((> per 60) "Grade D")
+((> per 40) "Grade E")
+(t "Grade F"))))
+
+
+17. Write lisp function to check whether a character is vowel or consonant.
+-->
+(defun vowel-or-character (ch)
+(cond
+((member ch '(#\a #\e #\i #\o #\u)) "vowel")
+((alpha-char-p ch) "consonant")
+(t "Not a letter")))
+
+
+ (vowel-or-character #\a)
+
+ (vowel-or-character #\p)
+
+ (vowel-or-character #\*)
+
+
+18. Write lisp function to accept week no. (1-7) and print day of week name using switch case. 
+-->
+(defun print-day-of-week (daynum) (case daynum (1 (format t "Sunday"))
+(2 (format t "Monday"))
+(3 (format t "Tuesday"))
+(4 (format t "Wednesday"))
+(5 (format t "Thursday"))
+(6 (format t "Friday"))
+(7 (format t "Saturday"))
+(otherwise (formar t "Invalid number please enter a number between 1-7"))))
+
+
+(print-day-of-week 6)
+
+
+19. Write a lisp function to accept a number and check whether the number is perfect number or not.
+-->
+(defun perfect-num (n)
+(let ((sum 0))
+(loop for i from 1 to (- n 1)
+when (zerop (mod n i))
+do (setq sum (+ sum i)))
+(= sum n)))
+
+(perfect-num 134)
+
+ (perfect-num 28)
+
+20. Write a lisp program to accept a list and print the maximum and minimum no. from given list.
+-->
+(defun max-min (l)
+(let ((max (first l))
+(min (first l)))
+(dolist (num (rest l))
+(when (> num max) (setf max num))
+(when (< num min)(setf min num)))
+(format t "Maximun: ~d~% Minimum: ~d~%" max min)))
+
+ (max-min '(2 3 4 9 8 1))
+
+21. Write lisp program to input a number and print it into words.
+-->
+	(mapcar (lambda (nb) (format nil "~@:(~R~)" nb)) '(1 2 3))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	(let((r 0)) (defun digit(n r) (if(zerop n) r (lambda(n)(/ n 10)) (lambda(r) (+ r 1)))))
+
+
+(let((r 0))(defun digit(n r) (if (zerop n) r ((lambda(r) (+ r 1))(digit (/ n 10) r)))))
+
+
+(let ((i 0)) (while (< i 10)(print i)(incf i)))
+
+ (defun digit(n) (loop ((lambda(r) (setq r(+ r 1)))(/ n 10)) (when (< n 0) (return r))))
+
+
+
+
+(loop do(print n) while (> n 10))
+
+(loop while (> n 20) do((print n)(- n 1)))
+
+
+(defun arm(n) (setf num n sum 0)(loop while(/= n 0) do (setf digit(mod n 10))(setf sum(+ sum(*(* digit digit)digit))) (setf n(floor n 10))) (if(= sum num) (print "armstrong number....!") (print "not armstrong number...!")))
+
+
+(defun digit (n) (loop

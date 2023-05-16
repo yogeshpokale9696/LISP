@@ -1,0 +1,242 @@
+
+Assignment 6: Assignment on Procedure Abstraction and
+Recursion
+1. Write lisp recursive function which take 2 sorted number list as argument and return a list which also sorted order.
+-->
+(defun srtlist(l m)
+ 	(cond ((null l) m) 
+		 ((null m) l)
+ 		((< (first l) (first m))(CONS (FIRST l) (srtlist (rest l) m)))
+		(t(CONS (FIRST m) (srtlist l (rest m))))))
+
+(srtlist '(1 3 5 7 9) '(2 4 6 8 10))
+(1 2 3 4 5 6 7 8 9 10)
+
+
+2. Ignoring the existence of NTHCDR, the primitive supplied by LISP itself, write a tail recursive procedure, SKIP-FIRST-N that rims off the first n elements from a list and returns the rest: >(skip-first-n 3 '(a b c d e f g h))
+(defgh)
+-->
+	(defun skip-first-n (n list) (labels ((skip (n list) (cond ((or (null list) (= n 0)) list) (t (skip (- n 1) (cdr list)))))) (skip n list)))
+
+(skip-first-n 2 '(a b c d e f g h i))
+
+--> Logic:-In recursive call it decreses n and list by 1 element in every call.
+
+
+3. Write tail recursive lisp function, which works the built in reverse function.
+--> 
+	(defun reverse-tail (list &optional acc) (if (null list) acc (reverse-tail (cdr list) (cons (car list) acc))))
+
+ 	(reverse-tail '(a b c d e))
+
+	(reverse-tail '())
+
+Note:- &optional keyword is used to create optional parameter 
+
+
+4. Define the function count-elements using an auxilliary function.
+-->
+	(defun count-ele (list) (labels ((count-ele-aux (list count) (if (null list) count (count-ele-aux (cdr list) (+ count 1))))) (count-ele-aux list 0)))
+
+auxilliary function :- Call Defined Function in another function ,Labels allows to do local function binding
+
+
+5. Define function count-atoms which return the number of atoms at any level of nesting in a list.
+-->
+	(defun count-atoms (list) (cond ((null list) 0) ((atom list) 1) (t(reduce '+ (mapcar #'count-atoms list)))))
+
+ (count-atoms '(1 2 (3 4 ( 5 6 (7 8)))))
+
+--It will add count of element and reduce will decrese element by one .
+
+(reduce #'+ '(1 2 3 4 5 6 7 8)) --> It will do addition of numbers in list one by one. it wil call repeatively to add function
+	
+6. Write a procedure, KEEP-FIRST-N, not tail recursive that returns a list of the first n elements in a list. You may assume there are at least n elements
+a. >(keep-first-n 3 ‘(a b c d e f g h))
+b. (ABC)
+-->
+	(defun keep-first-n (list n) (if (<= n 0) '() (cons (car list) (keep-first-n (cdr list) (- n 1)))))
+
+-->It will collect one by one element until n is equal to zero
+
+
+7. Write reverse lisp function which takes 1 argument as a list and return reverse of the list. (Do not use reverse predicate)
+-->
+
+	(defun reverse-list (list) (labels ((reverse-aux (list acc) (if (null list) acc (reverse-aux (cdr list) (cons (car list) acc))))) (reverse-aux list '())))
+
+(reverse-list '(a b c d))
+
+
+
+8. Write a pair of procedure KEEP-FIRST-N-CLEVERLY and KEEP-FIRST-N-CLEVERLY-AUX, that together make a lst if the first n elements in a list. Be sure that KEEP-FIRST-N- CLEVERLY-AUX is tail recursive.
+-->
+
+	(defun keep-first-n-cleverly (n list) (keep-first-n-cleverly-aux n list '()))
+	(defun keep-first-n-cleverly-aux (n list acc) (cond ((or (null list) (= n 0)) (reverse acc)) (t (keep-first-n-cleverly-aux (- n 1)(cdr list) (cons (car list )acc)))))
+
+(keep-first-n-cleverly 2 '(a b c d e f g h)) 
+
+
+9. Define PRESENTP, a predicate that determine whether a given atom occurs anywhere in an expression. PRESENTP differs from MEMBER predicate.
+
+a. (setf formula '(sqrt (/(+ (expt x 2) (expt y 2)))))
+b. (present 'x formula)
+c. T
+d. (present 'z formula)
+e. NIL
+--> (defun presentp (atom expr)(cond ((atom expr)(eq atom expr))((null expr)nil)(t (or (presetp atom (cdr expr))))))
+	
+(presentp / '( / a b))
+T
+
+
+10. The LISP primitives 1+ and 1- increment and decrement a number by one. Using 1+ and 1-, write a recursive procedure, ADD, for adding two numbers without +. Assume that both numbers are positive.
+---->
+
+	(defun ad(x y) (if (/= y 0) (ad (+ x 1) (- y 1)) x))
+	(ad 3 4)
+	
+11. Define SQUASH, a procedure that takes an expression as its argument and returns a nonnested list of all atoms found in the expression. ap. the
+(squash (a(a(a (a b))) ((((a b)b)b)b))
+-->(defun squash (expr)
+ (cond ((null  expr) nil)
+    ((atom expr) (list expr))
+    (t(append (squash (car expr)) (squash (cdr expr))))))
+
+	(squash '(a(a(a(a b ))) (((( a b )b)b)b)b))
+	->(A A A A B A B B B B B)
+
+
+12. Define recursive LISP function which takes tes argument first, an atom,second,a list returns a list after removing first occurrence of that atom within a list.
+-->
+	(defun remov(element lst)
+   (cond ((null lst)nil)
+     ((equal element (first lst))(rest lst))
+      (element (cons (first lst) ( remov element (rest lst))))))
+
+	(remov '5 '(a b f 5 7 5))
+
+	(A B F 7 5)
+
+13. Define a recursive LISP function which appends two list together.
+-->
+	(defun  list-append(l1 l2)
+"Append l1 and l2"
+(if (null l1)
+l2 
+(cons (first l1) (list-append (rest l1) l2 ))))
+
+(list-append '(a b c) '( d e f))
+
+
+14. Write recursive lisp function w find the factorial of a given number.
+-->
+	(defun fact (n)
+   (if (or( = n 1) (= n 0))
+ 1
+     (* n (fact (- n 1)))))
+ (fact 5)
+
+15. Write recursive lisp function to find difference of two lists taken as argument. 
+-->
+	(defun listdiff(l1 l2 )
+ ( if l1
+(if (member (car l1)l2)
+
+ (listdiff (cdr l1) l2)
+ (cons (car l1) (listdiff (cdr l1) l2))
+)
+)
+)
+
+(listdiff '(2 3 6) '(5 6 9 5))
+
+
+--It will print elements which are present in first list but not in 2 nd list .
+
+16. Write lisp to find factorial of a number with number with recursion.
+-->
+	(write-line "enter a number...")
+(setq x (read)) 
+(defun factorial (n)
+
+(if (= n 1)
+  (setq a 1)
+)
+(if (> n 1)
+(setq a (* n (factorial (- n 1))))
+
+)
+// (format t "~D! is ~D" n a)
+a
+)
+
+
+(factorial 5)
+	
+17. Defi find factorial of a 17. Define a recursive LISP function which takes 2 lists as arguments and returns a list containing alternate elements from each list.
+--->
+(defun alt(a b)
+(cond ((and (endp a)(endp b))NIL)
+((endp a)b)
+((endp b)a)
+(t(cons (car a)
+(alt b (cdr a))))))
+
+Break 21 [23]> (alt '() '())
+NIL
+Break 21 [23]> (alt '(5) '())
+(5)
+Break 21 [23]> (alt '() '(5))
+(5)
+Break 21 [23]> (alt '(1) '(5))
+
+
+18. Define a Recursive LISP function which takes one argument as a list and returns a list except last element of the list. (Do not use but last)
+-->
+	(defun lastele(l)
+    (if(null (rest l)) NIL (cons (first l) (lastele(rest l)))))
+19. Define a Recursive lisp program to calculate the sum of n numbers
+-->(defun sum (numbers)
+(if (null numbers)
+0
+(+ (first numbers) (sum (rest numbers)))))
+
+(sum '(52 63 66)) 
+	
+20. Write a recursive function for finding gcd of given two numbers.
+-->
+	(defun gcd2num (a b) (if (= b 0) a (gcd b (mod a b
+))))
+
+(gcd2num 6 9)
+21. Write your own recursive function to implement length primitive.
+-->
+ (defun len(l) (if (null l) 0 (+ 1 (len (cdr l)))))
+
+	(len '(1 2 3 4 5 7 8 9 10))
+22. Write lisp recursive function for implementing skip-first-n which work like nthcdr.
+--->
+	(defun skip-first-n (n 1) (if (or (zerop n)(endp l)) l (skip-first-n (- n 1) (rest l))))
+
+(skip-first-n 2 '(a b c d e f g h))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Labels Function use :-
+
+(defun sqcube (n) (labels ((sq(n) (* n n)) (cube(n) (* (sq n) n)))(list (sq n) (cube n)))) 
+
+

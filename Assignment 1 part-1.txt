@@ -1,0 +1,237 @@
+Q.4 
+
+1.  (first '(P H W))
+
+2.  (rest '(B K P H))
+
+3.  (first '((A B) (C D)))
+
+4.  (rest '((A B)(C D)))
+
+5.  (first (rest '((A B)(C D))))
+
+6.  (REST (FIRST '((A B)(C D))))
+
+7.  (FIRST (REST (FIRST '((A B)(C D)))))
+
+8.  (REST (FIRST (REST '((A B)(C D)))))
+
+9.  (FIRST (REST (FIRST (REST '((A B)(C D)(E F))))))
+
+10. (FIRST (FIRST (REST (REST '((A B)(C D)(E F))))))
+
+11. (FIRST (FIRST (REST '(REST ((A B)(C D)(E F))))))
+
+12. (FIRST (FIRST '(REST (REST ((A B)(C D)(E F))))))
+
+13. (FIRST '(FIRST (REST (REST ((A B)(C D)(E F))))))
+
+14. '(FIRST (FIRST (REST (REST ((A B)(C D)(E F))))))
+
+
+Q.5
+
+1. (FIRST (REST (REST '(APPLE ORANGE PEAR GRAPEFRUIT))))
+
+2. (FIRST (FIRST (REST '((APPLE ORANGE) (PEAR GRAPEFRUIT)))))
+
+3. (FIRST (FIRST(REST (REST (FIRST '(((APPLE) (ORANGE) (PEAR) (GRAPEFRUIT)))))))
+
+4. (FIRST (FIRST (FIRST (REST (REST '((APPLE) (ORANGE) ((PEAR)) (((GRAPEFRUIT)))))))))
+
+5. (FIRST (FIRST (REST (REST '((((APPLE))) ((ORANGE)) (PEAR) GRAPEFRUIT)))))
+
+6. (FIRST (REST (FIRST '((((APPLE) ORANGE) PEAR) GRAPEFRUIT))))
+
+
+Q.6
+
+1. (LENGTH '(PLATO SOCRATES ARISTOTLE))
+
+2. (LENGTH '((PLATO) (SOCRATES) (ARISTOTLE)))
+
+3. (LENGTH '((PLATO SOCRATES ARISTOTLE)))
+
+4. (REVERSE '(PLATO SOCRATES ARISTOTLE))
+
+5. (REVERSE '((PLATO) (SOCRATES) (ARISTOTLE)))
+
+6. (REVERSE '((PLATO SOCRATES ARISTOTLE)))
+
+7. (LENGTH '((CAR CHEVROLET) (DRINK COKE) (CEREAL WHEATIES)))
+
+8. (REVERSE '((CAR CHEVROLET) (DRINK COKE) (CEREAL WHEATIES)))
+
+9. (APPEND ‘((CAR CHEVROLET) (DRINK COKE)) (REVERSE '((CAR CHEVROLET) (DRINK COKE))))
+
+10. (SUBST 'OUT 'IN '(SHORT SKIRTS ARE IN)) // Substitute 'out' in place of 'in'
+
+11. (SUBST 'IN 'OUT '(SHORT SKIRTS ARE IN))
+
+12. (LAST '(SHORT SKIRTS ARE IN))
+
+13. (APPEND '(a b c) '()) // append only elements in list
+
+14.(LIST '(a b c) '())   // append list of first(a b c) elements or append as it is 
+
+15.(CONS '(a b c) '()) // put first list in 2 nd list but if 2 nd list is empty cons does not write NIL
+
+// Difference Between LIST and CONS  List return NIL if 2 nd list is empty but if 2 nd list is empty cons does not write NIL
+16.(CONS (FIRST nil)(REST nil))
+
+17.(APPEND '(a b c) '(x y z)) 
+
+18.(LIST '(a b c) '(x y z))
+
+19.(LIST 2 3 4)
+
+20. (LIST 'a '(as d f))
+
+21.(LAST '(a b c))  // return list of last element
+
+22.(LAST '((a b) (cd)))
+
+23.(NTHCDR 2 '(a b c)) // return n th element here 2 element of list
+
+24.(NTHCDR 5 '(abc))
+
+25.(BUTLAST '(a b c) 2) // return n th element from last here 2 element from last
+
+26.(BUTLAST '(a b c) 5)
+
+27.(REMOVE 'a '(a b c))
+
+28.(REMOVE 5 '(1567894578))  
+
+28.(REMOVE '5 '(1 5 67894578)) // remove number only if numbers are seprated 
+
+29.(setf new-front 'a list-to-be-changed '(bc)) (push new-front list-to-be-changed)
+
+29.(setf x 'a y '(bc)) (push x y)
+
+30.(pop y)
+
+Q.7 
+
+1. (setq x 10)
+   (print x)
+ 
+2. (setq y 34.567)
+   (print y)
+
+3. (setq ch nil)
+   (print ch)
+
+4. (setq n 123.78)
+   (print n)
+
+5. (setq bg 11.00e+4) // Add 4 zeros before point
+   (print bg)
+
+6. (setq r 124/2)
+   (print r)
+
+Q.8
+
+1. (setq x 10)
+	(print (type-of x))
+
+2. (setq y 34.567)
+	(print (type-of y))
+
+3. (setq ch nil)
+	(print (type-of ch))
+
+4. (setq  n 123.78)
+	(print (type-of n))
+
+5. (setq bg 11.00e+4) // Add 4 zeros before point
+   (print (type-of bg))
+
+6. (setq r 124/2)
+   (print (type-of r))
+
+
+Q.9
+
+1. (/ (+ 3 1)(- 3 1))
+
+2. (* (MAX 3 4 5)(MIN 3 4 5))
+
+3. (MIN (MAX 3 1 4)(MAX 2 7 1))
+
+4. (EXPT 3.3 2.2)  // gives value of 3.3^2.2
+
+5. (SQRT 9)
+
+6. (+ (FLOAT 2)(FLOAT 1.5))
+
+7. (-8)
+
+8. (--8)
+
+9. (abs 5.4)
+
+10. (abs -5) // it gives positive value every time
+
+11. (exit)
+
+12. (first '(a b c))
+
+13. (second '(a b c d e))
+
+14. (third '(a b c))
+
+15. (nth 0 '(a b c)) // return nth element here 0 th element
+
+16. (nth 2 '(a b c))
+
+17. (nth 12 '(a b c d e f g h i j k l m n o p))
+
+18. (null '(a b c)) // return 'T' if list is empty else NIL 
+
+19 (null nil)
+
+20. (listp '(pontiac cadillac chevrolet)) // return 'T' if it is list else NIL
+
+21. (listp 99)
+
+22. (TRUNCATE 1.9) // first return integer and then value after decimal point 
+
+23. (floor (/ 5.0 3)) // return value of division after decimal point 
+
+24. (CEILING (/ 5.0 3))  // return round of quotient and return value which if added to round of quotient it gives original quotient 
+
+25. (list 1 2 3 4 5)
+
+
+
+
+
+
+
+
+
+(defun ROTATE-L(l) (append (rest l) (list(first l))))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

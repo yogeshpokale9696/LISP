@@ -1,0 +1,265 @@
+Q.1
+ 1. 
+	(set(quote L)'(1 2 3))
+ 2.
+	(setf friends '(amit rohit sumit))
+ 3.
+	(setf friends (remove 'amit friends))
+ 4. 
+	(cons 'a '(b c))
+ 5.
+	(setf friends (cons 'shital friends))
+ 6.
+	(first '(i hate lisp))
+ 7. 
+	(first '(fast i hate lisp))
+ 8.
+	(rest '(a b c))
+ 9.
+	(first ())
+ 10.
+	(rest ())
+ 11. 
+	(first '((a b)(c d)))
+ 12.
+	(car '(a b c)) // car acts like first
+ 13.
+	(cdr '(a b c)) // cdr acts like rest 
+ 14.
+	(car (cdr '(a b c)))
+ 15.
+	(append '(a b c)'(p q r))
+ 16.
+	(setf ablist '(a b) xylist '(a b))
+	ablist
+	xylist
+ 17.
+	(setf ablist '(a b) cdlist '(c d) xylist '(x y))
+	(append ablist cdlist xylist)
+	(append ablist '() xylist '())
+	(append ablist xylist)
+	(append 'ablist xylist) // ab list is not a list or char
+ 18.
+	(list 'a 'b 'c)
+ 19.
+	(setf front 'a middle 'b back 'c)
+ 20.
+	(setf ablist '(a b))
+	(list ablist ablist)
+	(list 'ablist ablist)
+ 21. 
+	(setf ablist '(a b) cdlist '(c d))
+ 22.
+	(setf ablist '(a b) cdlist '(c d))
+	(append ablist cdlist) // append 1 st element into 2 nd list can't work on atom
+	(list ablist cdlist) // list all argunment 
+	(CONS ABLIST CDLIST)	// append only for result first element into 2 nd list can work on atom
+	ABLIST 
+	cdlist
+	(append ablist cdlist)
+	(append ablist ablist)
+	(list ablist ablist)
+	(cons ablist ablist)
+	(append 'ablist ablist)
+	(list 'ablist ablist)
+	(cons 'ablist ablist)
+ 23.
+	(setf newlist 'a oldlist '(b c))
+	(cons newlist oldlist)
+ 24. 
+	(setf abclist '(b c d))
+	(nthcdr 2 abclist)
+	 abclist
+	(nthcdr 2 abclist)
+ 25.
+	(setf abclist '(b c d e))
+	(nthcdr 2 abclist)
+ 26.
+	(setf abclist '(a b c))
+	(nthcdr 50 abclist)
+ 27.
+	(setf abclist '(a b c))
+	(butlast abclist 2)
+ 28.
+	()
+ 29.
+	NIL
+	(butlast abclist 1)
+	(butlast abclist 2)
+	(last abclist) // return last element 
+ 30.
+	(setf abcdlist '((a b) (c d)))
+	(last abcdlist)
+ 
+
+
+Q.2
+
+ 1.
+	(setf ablist '(a b) abcdlist '((a b)(c d)))
+	(length ablist)
+	(length abcdlist)
+	(length (append ablist abcdlist))
+	(reverse ablist)
+2.
+	(setf sumit '((math 80)(english 99)))
+	(assoc 'math sumit)  // find similar name like math in sumit (key value pair)
+3.
+	(cons (first nil)(rest nil)) // act like sets
+4.
+	(append '(a b c) '()) 
+5.
+	(append '(a b c) '())
+6.
+	(cons '(a b c) '())
+7.
+	(length '(p s a))
+8.
+	(length '((p)(s)(a)))
+9.
+	(length '((p s a)))
+10.
+	(reverse '((p s a)))
+11.
+	(reverse '((p) (s) (a)))
+12.
+	(reverse '(p s a))
+13.
+	(cons (first nil)(rest nil))
+14.
+	(last '((a b)(a c (o p m))(k l m(i g))))
+15.
+	(butlast '((a b)(a c)) (a b n m)) // given wrong
+
+	(butlast '(((a b)(a c)) (a b n m))) // correct
+
+
+
+Q.3
+
+	//Setting Values 
+	(setq a 3 b 2 c 7 d 9 k 0 l 6)
+
+1.
+	(+ a b)
+2.
+	(*(+ a b) c) // or
+	(+ a (* b c))
+3.
+	(*(+ a b) (+ c d))
+4.	
+	(+ (* a b) (* c d))
+5.
+	(+ (+ a b) (+ c d))
+6. 
+	(float (+ (* a b) (/ c d)))
+7.
+	(* (- a (/ b c)) (- (/ a k) l))  // K=0
+8.
+	(* a (+ (/ (+ b c) d)))
+9.
+	(float (/ (- (* 7 3) 6) (+ 2 (EXPT 4 2))))
+10.
+	(float (/ (+ 7 5) (EXPT (- 6 4) (+ 2 3))))
+
+Q.4 
+
+1.
+	(first (rest (rest '(chair sofa table cupboard ))))
+2.
+	(first (first (rest '((chair sofa)(table cupboard)))))
+3.
+	(first (first (rest (rest '((chair)(sofa)(table)(cupb))))))
+4.	
+	(first (rest (rest '(chair (sofa) ((table)) (((cupb)))))))
+5.
+	(first (first (rest (rest '(chair (sofa) ((table)) (((cupb))))))))
+6.
+	(first (first (first (rest '(chair (sofa) ((table)) (((cupb))))))))
+7.
+	(first (first (first (rest (rest '((((ch))) ((sofa)) (table) cup))))))
+8.
+	(rest '(first ((((chair) sofa) table )cup)))
+9.
+	(rest (first '((((chair) sofa) table cup)))))
+10.
+	(first (rest (first '((((chair) sofa)table)cup))))
+
+
+Q.5
+
+1.
+	(setf tools (list 'hammer 'screwdriver))
+	(cons 'pliers tools)
+	tools
+2.
+	(setf tools (cons 'pliers tools))
+	tools
+3.
+	(append '(saw wrench) tools)
+	tools
+4.
+	(setf tools (append '(saw wrench) tools))
+	tools
+
+
+Q.6
+
+	()		((NIL))
+
+	(())		NIL
+
+	((()))	(NIL)
+	
+	(() ())	(NIL (NIL))
+
+	(() (()))	(NIL NIL)
+ 
+
+RESULTS 	1-->2
+		2-->3
+		3-->1
+		4-->5
+		5-->4
+
+Q.7
+
+1.	
+	(SECOND '(HONK IF YOU LIKE GEESE))
+2.
+	(SETQ X '(A B C))
+	(FIRST (REST (REST X)))
+3.
+	(SECOND (REST X))
+
+4.
+	(first (first (first (rest '(((GOOD))((Night)))))))
+
+5.
+	(SETQ Y '((A B) (C D) (E F)))
+
+	(CAR Y) // First 
+	(CDDR Y) // rest of rest 
+	(CADR Y) // rest of first 
+	(CDAR Y) // first of rest 
+	 (CADAR Y) // first of (cdar)
+	(CDDAR Y) // rest of rest of first 
+	(CAAR Y)
+	(CDADDR Y) rest of first of rest of rest 
+
+
+TABLE 
+
+
+	FUNCTION		RESULT
+	
+	CAR ? 			> (A B)
+	CDDR ?			> ((E F)) 
+	CADR ?			> (C D)
+	CDAR ?			> (B)
+	> CADAR			B ?
+	CDDAR ?			> NIL
+	> CAAR			A ?
+	CDADDR ?			> (F)
+	 (first(rest(first (rest (rest y)))))				F ?
+
